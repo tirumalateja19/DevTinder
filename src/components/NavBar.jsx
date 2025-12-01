@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
@@ -7,10 +8,12 @@ const NavBar = () => {
     <div>
       <div className="navbar bg-base-300 shadow-sm py-3">
         <div className="flex-1">
-          <h1 className="btn btn-ghost text-xl">👨🏻‍💻 DevTinder</h1>
+          <Link to={"/"} className="btn btn-ghost text-xl">
+            👨🏻‍💻 DevTinder
+          </Link>
         </div>
         <div>
-          <h5>Welcome {user?.data?.firstName}</h5>
+          <h5>Welcome {user?.firstName}</h5>
         </div>
         <div className="flex gap-2">
           {user && (
@@ -23,7 +26,7 @@ const NavBar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src={user?.data?.photoUrl}
+                    src={user?.photoUrl}
                   />
                 </div>
               </div>
@@ -32,16 +35,16 @@ const NavBar = () => {
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
                 <li>
-                  <h5 className="justify-between">
+                  <Link to={"/profile"} className="justify-between">
                     Profile
                     <span className="badge">New</span>
-                  </h5>
+                  </Link>
                 </li>
                 <li>
-                  <h5>Settings</h5>
+                  <Link to={"/settings"}>Settings</Link>
                 </li>
                 <li>
-                  <h5>Logout</h5>
+                  <Link to={"/logout"}>Logout</Link>
                 </li>
               </ul>
             </div>
