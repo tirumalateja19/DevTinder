@@ -1,11 +1,11 @@
 import React from "react";
 
-const Logout = () => {
+const Error = () => {
   return (
     <div>
-      <h1>Logout</h1>
+      <h1>Error</h1>
     </div>
   );
 };
 
-export default Logout;
+export default Error;

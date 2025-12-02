@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [emailId, setemailId] = useState("sheldon@gmail.com");
   const [password, setPassword] = useState("bazzinga@123");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,8 +22,10 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data));
+      console.log(res.data);
       return navigate("/");
     } catch (err) {
+      setError(err?.response?.data);
       console.error(err);
     }
   };
@@ -59,7 +62,10 @@ const Login = () => {
               />
             </div>
           </div>
-          <div className="card-actions justify-center mt-5">
+          <div>
+            <span className="text-red-500 m-2">{error}</span>
+          </div>
+          <div className="card-actions justify-center">
             <button className="btn btn-sm btn-success" onClick={handleSubmit}>
               login
             </button>

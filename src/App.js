@@ -6,7 +6,7 @@ import FeedPage from "./components/FeedPage.jsx";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore.jsx";
 import Profile from "./components/Profile.jsx";
-import Logout from "./components/Logout.jsx";
+import Error from "./components/Error.jsx";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
               <Route path="/" element={<FeedPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/logout" element={<Logout />} />
+              <Route path="/error" element={<Error />} />
               <Route path="/signup" element={<SignUp />} />
             </Route>
           </Routes>
