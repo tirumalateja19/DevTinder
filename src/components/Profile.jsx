@@ -1,10 +1,14 @@
-import React from "react";
+import { useSelector } from "react-redux";
+import EditDetails from "./EditDetails";
 
 const Profile = () => {
+  const user = useSelector((store) => store.user);
   return (
-    <div>
-      <h1>Profile</h1>
-    </div>
+    user && (
+      <div className=" h-[100vh] overflow-hidden flex justify-center items-center gap-2">
+        <EditDetails user={user} />
+      </div>
+    )
   );
 };
 
