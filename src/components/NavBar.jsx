@@ -21,13 +21,13 @@ const NavBar = () => {
     <div>
       <div className="navbar bg-base-300 shadow-sm py-3">
         <div className="flex-1">
-          <Link to={"/"} className="btn btn-ghost text-xl">
+          <Link to={"/"} className="btn btn-ghost text-xl capitalize">
             👨🏻‍💻 DevTinder
           </Link>
         </div>
         {user && (
           <div>
-            <h5>Welcome {user?.firstName}</h5>
+            <h5 className="capitalize">Welcome {user?.firstName}</h5>
           </div>
         )}
         <div className="flex gap-2">
