@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HeroBody from "./components/HeroBody.jsx";
-import SignUp from "./components/SignUp.jsx";
 import Login from "./components/Login.jsx";
 import FeedPage from "./components/FeedPage.jsx";
 import { Provider } from "react-redux";
@@ -23,7 +22,6 @@ function App() {
               <Route path="/connections" element={<Connections />} />
               <Route path="/requests" element={<Requests />} />
               <Route path="/error" element={<Error />} />
-              <Route path="/signup" element={<SignUp />} />
             </Route>
           </Routes>
         </BrowserRouter>

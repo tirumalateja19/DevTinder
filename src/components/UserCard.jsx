@@ -25,11 +25,12 @@ const UserCard = ({ user }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title capitalize">
-          {firstName + " " + lastName + ", " + age}
+          {firstName + " " + lastName}
+          {age && "," + age}
         </h2>
         {gender && <p className="capitalize">{gender}</p>}
         {skills && <p>{skills}</p>}
-        <p>{about}</p>
+        <p className="text-justify">{about}</p>
         <div className="card-actions justify-between mt-3">
           <button
             className="btn btn-sm btn-secondary"
