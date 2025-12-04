@@ -1,13 +1,26 @@
 import axios from "axios";
 import { SERVER_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addRequest } from "../utils/requestSlice";
+import { addRequest, removeRequest } from "../utils/requestSlice";
 import { useEffect } from "react";
 
 const Requests = () => {
   const dispatch = useDispatch();
   const data = useSelector((store) => store.request);
-  console.log(data);
+
+  const reviewRequest = async (status, _id) => {
+    try {
+      await axios.post(
+        SERVER_URL + "/request/review/" + status + "/" + _id,
+        {},
+        { withCredentials: true }
+      );
+      dispatch(removeRequest(_id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const fetchRequest = async () => {
     try {
       const res = await axios.get(SERVER_URL + "/user/requests/received", {
@@ -24,7 +37,27 @@ const Requests = () => {
 
   if (!data) return;
 
-  if (data.length === 0) return <h1> No Connections Found</h1>;
+  if (data.length === 0)
+    return (
+      <div className="flex justify-center items-center my-14">
+        <div className="alert alert-info w-1/6 ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="stroke-current shrink-0 w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+          <span>No Requests Found</span>
+        </div>
+      </div>
+    );
   return (
     <div className="text-center my-10">
       <h1 className="text-bold text-white text-3xl">Connections</h1>
@@ -62,8 +95,22 @@ const Requests = () => {
                 <p>{about}</p>
               </div>
               <div className="card-actions">
-                <button className="btn btn-sm btn-error">Reject</button>
-                <button className="btn btn-sm btn-primary">Accept</button>
+                <button
+                  className="btn btn-sm btn-error"
+                  onClick={() => {
+                    reviewRequest("rejected", request._id);
+                  }}
+                >
+                  Reject
+                </button>
+                <button
+                  className="btn btn-sm btn-primary"
+                  onClick={() => {
+                    reviewRequest("accepted", request._id);
+                  }}
+                >
+                  Accept
+                </button>
               </div>
             </div>
           </div>
