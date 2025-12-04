@@ -30,9 +30,11 @@ const HeroBody = () => {
     fetchUser();
   }, []);
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <NavBar />
-      <Outlet />
+      <main className="flex-grow overflow-x-hidden">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

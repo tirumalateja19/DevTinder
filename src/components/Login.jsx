@@ -22,7 +22,6 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data));
-      console.log(res.data);
       return navigate("/");
     } catch (err) {
       setError(err?.response?.data);
@@ -30,7 +29,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="flex justify-center">
+    <div className=" h-[80vh] flex justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl ">
         <div className="card-body">
           <h2 className="card-title text-center">Login</h2>

@@ -11,7 +11,7 @@ const UserCard = ({ user }) => {
         <h2 className="card-title capitalize">
           {firstName + " " + lastName + ", " + age}
         </h2>
-        {gender && <p>{gender}</p>}
+        {gender && <p className="capitalize">{gender}</p>}
         {skills && <p>{skills}</p>}
         <p>{about}</p>
         <div className="card-actions justify-between mt-3">
