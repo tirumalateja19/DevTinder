@@ -26,13 +26,15 @@ const NavBar = () => {
           </Link>
         </div>
         {user && (
-          <div>
-            <h5 className="capitalize">Welcome {user?.firstName}</h5>
+          <div className="flex-1 justify-end">
+            <h5 className="capitalize font-semibold">
+              Welcome {user?.firstName}
+            </h5>
           </div>
         )}
-        <div className="flex gap-2">
+        <div className="flex">
           {user && (
-            <div className="dropdown dropdown-end mx-7">
+            <div className="dropdown dropdown-end mx-4">
               <div
                 tabIndex={0}
                 role="button"

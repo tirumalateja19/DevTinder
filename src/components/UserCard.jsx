@@ -19,9 +19,13 @@ const UserCard = ({ user }) => {
     }
   };
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="w-80 bg-base-100 shadow-xl">
       <figure>
-        <img src={photoUrl} alt="Shoes" />
+        <img
+          className="lg:h-[36vh] lg:w-[20vw] object-cover"
+          src={photoUrl}
+          alt="Shoes"
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title capitalize">

@@ -28,7 +28,7 @@ const FeedPage = () => {
   if (feed.length === 0)
     return (
       <div className="flex justify-center items-center my-14">
-        <div className="alert alert-info w-1/6 ">
+        <div className="alert alert-info lg:w-1/6 max-w-sm sm:max-w-md md:max-w-lg ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -48,7 +48,7 @@ const FeedPage = () => {
     );
   return (
     feed && (
-      <div className="flex justify-center items-center mt-7">
+      <div className="flex justify-center items-center lg:h-[80vh] h-[70vh]">
         <UserCard user={feed[0]} />
       </div>
     )

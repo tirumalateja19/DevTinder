@@ -40,7 +40,7 @@ const Requests = () => {
   if (data.length === 0)
     return (
       <div className="flex justify-center items-center my-14">
-        <div className="alert alert-info w-1/6 ">
+        <div className="alert alert-info lg:w-1/6 max-w-sm sm:max-w-md md:max-w-lg">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -59,8 +59,8 @@ const Requests = () => {
       </div>
     );
   return (
-    <div className="text-center my-10">
-      <h1 className="text-bold text-white text-3xl">Connections</h1>
+    <div className="h-[100vh]">
+      <h1 className="text-center my-10 text-bold text-xl">Requests</h1>
 
       {data.map((request) => {
         const {
@@ -75,42 +75,47 @@ const Requests = () => {
         } = request.fromUserId;
 
         return (
-          <div>
-            <div
-              key={_id}
-              className=" flex m-4 p-4 rounded-lg bg-base-300 w-2/5 mx-auto"
-            >
-              <div className="avatar">
-                <div className="w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                  <img src={photoUrl} alt="userImage" />
+          <div key={_id}>
+            <div className="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl mb-4">
+              <div className="md:flex">
+                <div className="md:shrink-0">
+                  <img
+                    className="h-48 w-full object-cover md:h-full md:w-44"
+                    src={photoUrl}
+                    alt="Modern building architecture"
+                  />
                 </div>
-              </div>
-              <div className="text-left mx-4 ">
-                <h2 className="font-bold text-xl capitalize">
-                  {firstName + " " + lastName}
-                </h2>
-                {age && <p>{age}</p>}
-                {gender && <p className="capitalize">{gender}</p>}
-                {skills && <p>{skills}</p>}
-                <p>{about}</p>
-              </div>
-              <div className="card-actions">
-                <button
-                  className="btn btn-sm btn-error"
-                  onClick={() => {
-                    reviewRequest("rejected", request._id);
-                  }}
-                >
-                  Reject
-                </button>
-                <button
-                  className="btn btn-sm btn-primary"
-                  onClick={() => {
-                    reviewRequest("accepted", request._id);
-                  }}
-                >
-                  Accept
-                </button>
+                <div className="p-4 text-justify">
+                  <div className="text-lg font-semibold tracking-wide text-indigo-500 capitalize">
+                    <h2>
+                      {firstName + " " + lastName}
+                      {age && "," + age}
+                      {gender && ", " + gender}
+                    </h2>
+                  </div>
+                  {skills && <p>{skills}</p>}
+                  <p className="my-2 text-gray-500 text-start text-sm md:text-base">
+                    {about}
+                  </p>
+                  <div className="card-actions justify-around">
+                    <button
+                      className="btn btn-sm btn-error"
+                      onClick={() => {
+                        reviewRequest("rejected", request._id);
+                      }}
+                    >
+                      Reject
+                    </button>
+                    <button
+                      className="btn btn-sm btn-primary"
+                      onClick={() => {
+                        reviewRequest("accepted", request._id);
+                      }}
+                    >
+                      Accept
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
