@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 // import { SERVER_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnection } from "../utils/connectionSlice";
@@ -8,7 +8,7 @@ const Connections = () => {
   const dispatch = useDispatch();
   const data = useSelector((store) => store.connection);
   const apiUrl = process.env.REACT_APP_SERVER_URL;
-  const fetchConnections = async () => {
+  const fetchConnections = useCallback(async () => {
     try {
       const res = await axios.get(apiUrl + "/user/connections", {
         withCredentials: true,
@@ -17,10 +17,10 @@ const Connections = () => {
     } catch (err) {
       console.error(err);
     }
-  };
+  },[apiUrl,dispatch]);
   useEffect(() => {
     fetchConnections();
-  }, []);
+  }, [fetchConnections]);
   if (!data) return;
 
   if (data.length === 0)

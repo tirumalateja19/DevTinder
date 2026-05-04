@@ -2,7 +2,7 @@ import axios from "axios";
 // import { SERVER_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequest, removeRequest } from "../utils/requestSlice";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 const Requests = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const Requests = () => {
     }
   };
 
-  const fetchRequest = async () => {
+  const fetchRequest = useCallback(async () => {
     try {
       const res = await axios.get(apiUrl + "/user/requests/received", {
         withCredentials: true,
@@ -31,10 +31,10 @@ const Requests = () => {
     } catch (err) {
       console.error(err);
     }
-  };
+  }, [apiUrl, dispatch]);
   useEffect(() => {
     fetchRequest();
-  }, []);
+  }, [fetchRequest]);
 
   if (!data) return;
 

@@ -3,14 +3,14 @@ import UserCard from "./UserCard";
 import axios from "axios";
 // import { SERVER_URL } from "../utils/constants";
 import { addFeed } from "../utils/feedSlice";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 const FeedPage = () => {
   const feed = useSelector((store) => store.feed);
   const dispatch = useDispatch();
   const apiUrl = process.env.REACT_APP_SERVER_URL;
 
-  const fetchFeed = async () => {
+  const fetchFeed = useCallback(async () => {
     if (feed) return;
     try {
       const res = await axios.get(apiUrl + "/user/feed", {
@@ -20,10 +20,10 @@ const FeedPage = () => {
     } catch (err) {
       console.error(err);
     }
-  };
+  }, [feed, apiUrl, dispatch]);
   useEffect(() => {
     fetchFeed();
-  }, []);
+  }, [fetchFeed]);
   if (!feed) return;
 
   if (feed.length === 0)

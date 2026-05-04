@@ -5,7 +5,7 @@ import axios from "axios";
 // import { SERVER_URL } from "../utils/constants.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice.jsx";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 const HeroBody = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const HeroBody = () => {
   const userData = useSelector((store) => store.user);
   const apiUrl = process.env.REACT_APP_SERVER_URL;
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     if (userData) return;
     try {
       const res = await axios.get(apiUrl + "/profile/view", {
@@ -26,10 +26,10 @@ const HeroBody = () => {
       }
       console.error(err);
     }
-  };
+  }, [userData, apiUrl, dispatch, navigate]);
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [fetchUser]);
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
