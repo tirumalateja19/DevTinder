@@ -7,7 +7,7 @@ const NavBar = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const apiUrl = process.env.SERVER_URL;
+  const apiUrl = process.env.REACT_APP_SERVER_URL;
 
   const handleLogout = async () => {
     try {

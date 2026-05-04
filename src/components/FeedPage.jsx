@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const FeedPage = () => {
   const feed = useSelector((store) => store.feed);
   const dispatch = useDispatch();
-  const apiUrl = process.env.SERVER_URL;
+  const apiUrl = process.env.REACT_APP_SERVER_URL;
 
   const fetchFeed = async () => {
     if (feed) return;

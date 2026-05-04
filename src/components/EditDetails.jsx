@@ -15,7 +15,7 @@ const EditDetails = ({ user }) => {
   const [showToast, setShowToast] = useState(false);
 
   const dispatch = useDispatch();
-  const apiUrl = process.env.SERVER_URL;
+  const apiUrl = process.env.REACT_APP_SERVER_URL;
   const saveProfile = async () => {
     try {
       const res = await axios.patch(

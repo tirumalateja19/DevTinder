@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const Requests = () => {
   const dispatch = useDispatch();
-  const apiUrl = process.env.SERVER_URL;
+  const apiUrl = process.env.REACT_APP_SERVER_URL;
   const data = useSelector((store) => store.request);
 
   const reviewRequest = async (status, _id) => {

@@ -11,7 +11,7 @@ const HeroBody = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
-  const apiUrl = process.env.SERVER_URL;
+  const apiUrl = process.env.REACT_APP_SERVER_URL;
 
   const fetchUser = async () => {
     if (userData) return;

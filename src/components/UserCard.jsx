@@ -8,7 +8,7 @@ const UserCard = ({ user }) => {
   const { firstName, lastName, gender, about, photoUrl, skills, age, _id } =
     user;
   const dispatch = useDispatch();
-  const apiUrl = process.env.SERVER_URL;
+  const apiUrl = process.env.REACT_APP_SERVER_URL;
   const sendRequest = async (status, userId) => {
     try {
       await axios.get(apiUrl + "/request/send/" + status + "/" + userId, {
