@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { SERVER_URL } from "../utils/constants";
+// import { SERVER_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
 
@@ -8,9 +8,10 @@ const UserCard = ({ user }) => {
   const { firstName, lastName, gender, about, photoUrl, skills, age, _id } =
     user;
   const dispatch = useDispatch();
+  const apiUrl = process.env.SERVER_URL;
   const sendRequest = async (status, userId) => {
     try {
-      await axios.get(SERVER_URL + "/request/send/" + status + "/" + userId, {
+      await axios.get(apiUrl + "/request/send/" + status + "/" + userId, {
         withCredentials: true,
       });
       dispatch(removeUserFromFeed(userId));

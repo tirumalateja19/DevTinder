@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { SERVER_URL } from "../utils/constants";
+// import { SERVER_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -14,16 +14,17 @@ const Login = () => {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const apiUrl = process.env.SERVER_URL;
 
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        SERVER_URL + "/login",
+        apiUrl + "/login",
         {
           emailId,
           password,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       dispatch(addUser(res.data));
       return navigate("/");
@@ -35,9 +36,9 @@ const Login = () => {
   const handleSignUp = async () => {
     try {
       const res = await axios.post(
-        SERVER_URL + "/signup",
+        apiUrl + "/signup",
         { firstName, lastName, emailId, password },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       dispatch(addUser(res?.data?.data));
       navigate("/profile");

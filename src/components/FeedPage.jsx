@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import UserCard from "./UserCard";
 import axios from "axios";
-import { SERVER_URL } from "../utils/constants";
+// import { SERVER_URL } from "../utils/constants";
 import { addFeed } from "../utils/feedSlice";
 import { useEffect } from "react";
 
 const FeedPage = () => {
   const feed = useSelector((store) => store.feed);
   const dispatch = useDispatch();
+  const apiUrl = process.env.SERVER_URL;
 
   const fetchFeed = async () => {
     if (feed) return;
     try {
-      const res = await axios.get(SERVER_URL + "/user/feed", {
+      const res = await axios.get(apiUrl + "/user/feed", {
         withCredentials: true,
       });
       dispatch(addFeed(res?.data?.data));

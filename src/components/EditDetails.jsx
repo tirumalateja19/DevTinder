@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { SERVER_URL } from "../utils/constants";
+// import { SERVER_URL } from "../utils/constants";
 import { addUser } from "../utils/userSlice";
 import UserCard from "./UserCard";
 
@@ -15,12 +15,13 @@ const EditDetails = ({ user }) => {
   const [showToast, setShowToast] = useState(false);
 
   const dispatch = useDispatch();
+  const apiUrl = process.env.SERVER_URL;
   const saveProfile = async () => {
     try {
       const res = await axios.patch(
-        SERVER_URL + "/profile/edit",
+        apiUrl + "/profile/edit",
         { firstName, lastName, photoUrl, age, gender, about },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       dispatch(addUser(res?.data?.data));
       setShowToast(true);
