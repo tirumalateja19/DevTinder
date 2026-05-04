@@ -15,7 +15,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_SERVER_URL;
-  console.log(apiUrl, " API URl");
+  // console.log(apiUrl, " API URl");
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
