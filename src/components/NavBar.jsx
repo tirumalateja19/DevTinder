@@ -12,8 +12,11 @@ const NavBar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(apiUrl + "/logout", {}, { withCredentials: true });
+      console.log("1 - logout api done");
       navigate("/login");
+      console.log("2 - navigated");
       dispatch(removeUser());
+      console.log("3 - user removed");
     } catch (err) {
       console.error(err);
     }
