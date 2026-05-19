@@ -15,6 +15,7 @@ const HeroBody = () => {
 
   const fetchUser = useCallback(async () => {
     if (userData) return;
+    if (window.location.pathname === "/login") return;
     try {
       const res = await axios.get(apiUrl + "/profile/view", {
         withCredentials: true,
